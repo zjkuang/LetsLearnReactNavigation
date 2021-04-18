@@ -1,0 +1,33 @@
+========
+Startup
+
+(1) Create your app with TypeScript template
+Run `npx react-native init <your-app-name> --template react-native-template-typescript`
+
+In most cases it will create the app for you. But when I ran it, I got an error saying
+  Error: Failed to install CocoaPods dependencies for iOS project, which is required by this template.
+  Solution:
+    brew upgrade cocoapods
+      Trouble-shooting: Ignoring ffi-1.13.1 because its extensions are not built. Try: gem pristine ffi --version 1.13.1
+      Solution: https://stackoverflow.com/a/65248326
+
+(2) Run it
+`cd <your-app-name>`
+`yarn ios`
+`yarn android`
+
+The first time running `yarn android` may fail with errors something like
+  Could not determine the dependencies of task ':app:installDebug'.
+Try to run android project from Android Studio for the first time and then quit Android Studio and let the Emulator remain open, run `yarn android` again.
+
+(3) Push to GitHub
+Create a new empty repository <your-app-name> in GitHub. (NO README, NO .gitignore, NOTHING!!!)
+`cd <your-app-name>` and `git init` and `git add .` and `git commit -m 'initial'`
+`git remote add origin https://github.com/<your-github-user-name>/<your-app-name>.git`
+  (or `git remote add origin git@github.com:<your-github-user-name>/<your-app-name>.git`, depending on how your git was set up.)
+`git push -u origin master`
+(If you are using SourceTree, after the above steps, in SourceTree `New`/`Add Existing Local Repository`)
+
+*** *** *** ***
+Unless specifically mentioned, all the Terminal commands in this doc are supposed to be run from the folder of your app.
+*** *** *** ***
