@@ -44,3 +44,11 @@ Install some most frequently used packages from react-navigation, including stac
 `yarn add @react-navigation/native react-native-reanimated react-native-gesture-handler react-native-screens react-native-safe-area-context @react-native-community/masked-view @react-navigation/stack @react-navigation/bottom-tabs @react-navigation/material-top-tabs react-native-tab-view react-native-pager-view`
 `cd ios && pod install && cd ..`
   (Each time we `yarn add ...` we need to run `cd ios && pod install && cd ..` to install the corresponding pods for iOS.)
+
+========
+Install oblador icons
+
+Install oblador icons
+`yarn add react-native-vector-icons @types/react-native-vector-icons`
+`cd ios && pod install && cd ..`
+(To view the gallery, visit https://oblador.github.io/react-native-vector-icons/)
