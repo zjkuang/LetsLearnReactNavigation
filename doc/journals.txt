@@ -36,3 +36,11 @@ Unless specifically mentioned, all the Terminal commands in this doc are suppose
 Remove template contents
 
 In App.tsx remove template contents.
+
+========
+Install react-navigation packages
+
+Install some most frequently used packages from react-navigation, including stack, bottom-tabs, top-tabs and related packages
+`yarn add @react-navigation/native react-native-reanimated react-native-gesture-handler react-native-screens react-native-safe-area-context @react-native-community/masked-view @react-navigation/stack @react-navigation/bottom-tabs @react-navigation/material-top-tabs react-native-tab-view react-native-pager-view`
+`cd ios && pod install && cd ..`
+  (Each time we `yarn add ...` we need to run `cd ios && pod install && cd ..` to install the corresponding pods for iOS.)
