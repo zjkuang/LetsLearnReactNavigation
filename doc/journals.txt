@@ -31,3 +31,8 @@ Create a new empty repository <your-app-name> in GitHub. (NO README, NO .gitigno
 *** *** *** ***
 Unless specifically mentioned, all the Terminal commands in this doc are supposed to be run from the folder of your app.
 *** *** *** ***
+
+========
+Remove template contents
+
+In App.tsx remove template contents.
