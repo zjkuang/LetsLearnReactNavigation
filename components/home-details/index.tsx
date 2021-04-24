@@ -1,8 +1,9 @@
 import React from 'react';
-import {View} from 'react-native';
+import {View, TouchableOpacity} from 'react-native';
 import {StackScreenProps} from '@react-navigation/stack';
 import {styles} from './style';
 import {QuickTestButton} from '../widgets';
+import {IconLock, IconUnlock} from '../icons';
 import {RootStackParamList} from '../root';
 
 // There are two methods to get access to navigation.
@@ -24,6 +25,15 @@ export const HomeDetails = (props: HomeDetailsProps) => {
     }
     props.navigation.setOptions({
       headerTitle: title,
+      headerRight: () => (
+        <TouchableOpacity
+          style={styles.navigationHeaderRight}
+          onPress={() => {
+            //
+          }}>
+          <IconLock color={'red'} />
+        </TouchableOpacity>
+      ),
     });
   }, [props.navigation, props.route.params.generation]);
 
