@@ -6,6 +6,7 @@ import {RootStackNavigationProp} from '../root';
 import {QuickTestButton} from '../widgets';
 
 export const HomeDetails = () => {
+  const navigation = useNavigation();
   const stackNavigation = useNavigation<RootStackNavigationProp>();
 
   React.useLayoutEffect(() => {
@@ -15,12 +16,17 @@ export const HomeDetails = () => {
     });
   }, [stackNavigation]);
 
+  const onBackButtonPressed = React.useCallback(() => {
+    navigation.goBack();
+  }, [navigation]);
+
   const onHomeButtonPressed = React.useCallback(() => {
-    stackNavigation.push('HomeScreen', {});
+    stackNavigation.navigate('HomeScreen', {});
   }, [stackNavigation]);
 
   return (
     <View style={styles.baseView}>
+      <QuickTestButton title={'Back'} onPress={onBackButtonPressed} />
       <QuickTestButton title={'Home'} onPress={onHomeButtonPressed} />
     </View>
   );

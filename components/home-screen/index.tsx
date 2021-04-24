@@ -13,7 +13,7 @@ export const HomeScreen = (props: HomeScreenProps) => {
 
   React.useLayoutEffect(() => {
     stackNavigation.setOptions({
-      headerTitle: props.headerTitle ?? 'HomeScreen',
+      headerTitle: 'Home',
     });
   }, [props.headerTitle, stackNavigation]);
 
