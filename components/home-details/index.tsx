@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, TouchableOpacity} from 'react-native';
+import {View, TouchableOpacity, Alert} from 'react-native';
 import {StackScreenProps} from '@react-navigation/stack';
 import {styles} from './style';
 import {QuickTestButton} from '../widgets';
@@ -17,6 +17,8 @@ export type HomeDetailsParamList = {
 };
 type HomeDetailsProps = StackScreenProps<RootStackParamList, 'HomeDetails'>;
 export const HomeDetails = (props: HomeDetailsProps) => {
+  const [locked, setLocked] = React.useState(false);
+
   React.useLayoutEffect(() => {
     let title = 'Details';
     let generation = props.route.params.generation ?? 0;
@@ -29,13 +31,33 @@ export const HomeDetails = (props: HomeDetailsProps) => {
         <TouchableOpacity
           style={styles.navigationHeaderRight}
           onPress={() => {
-            //
+            setLocked(!locked);
           }}>
-          <IconLock color={'red'} />
+          {locked ? <IconLock color={'red'} /> : <IconUnlock color={'green'} />}
         </TouchableOpacity>
       ),
     });
-  }, [props.navigation, props.route.params.generation]);
+  }, [locked, props.navigation, props.route.params.generation]);
+
+  React.useEffect(() => {
+    props.navigation.addListener('beforeRemove', e => {
+      if (!locked) {
+        return;
+      }
+
+      e.preventDefault();
+
+      Alert.alert(
+        'STOP!',
+        'Click on the lock icon to unlock it before leaving this screen.',
+        [{text: 'OK', style: 'cancel', onPress: () => {}}],
+      );
+    });
+
+    return () => {
+      props.navigation.removeListener('beforeRemove', () => {});
+    };
+  }, [locked, props.navigation]);
 
   const onCloneMyselfPressed = React.useCallback(() => {
     props.navigation.push('HomeDetails', {
