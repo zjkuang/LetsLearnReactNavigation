@@ -1,42 +1,46 @@
 import React from 'react';
 import {View} from 'react-native';
-import {styles} from './style';
-import {RootStackParamList} from '../root';
-import {QuickTestButton} from '../widgets';
 import {StackScreenProps} from '@react-navigation/stack';
+import {styles} from './style';
+import {QuickTestButton} from '../widgets';
+import {RootStackParamList} from '../root';
+
+// There are two methods to get access to navigation.
+// One is as used here by props.navigation, where
+//   props: HomeDetailsProps
+//   HomeDetailsProps = StackScreenProps<RootStackParamList, 'HomeDetails'>
+// The other is by useNavigation, as displayed in HomeScreen
 
 export type HomeDetailsParamList = {
   generation?: number;
 };
 type HomeDetailsProps = StackScreenProps<RootStackParamList, 'HomeDetails'>;
-export const HomeDetails = ({navigation, route}: HomeDetailsProps) => {
+export const HomeDetails = (props: HomeDetailsProps) => {
   React.useLayoutEffect(() => {
     let title = 'Details';
-    let generation = route.params.generation ?? 0;
+    let generation = props.route.params.generation ?? 0;
     if (generation > 0) {
       title = `${title}[${generation}]`;
     }
-    navigation.setOptions({
+    props.navigation.setOptions({
       headerTitle: title,
     });
-  }, [navigation, route.params.generation]);
+  }, [props.navigation, props.route.params.generation]);
+
+  const onCloneMyselfPressed = React.useCallback(() => {
+    props.navigation.push('HomeDetails', {
+      generation: (props.route.params.generation ?? 0) + 1,
+    });
+  }, [props.navigation, props.route.params.generation]);
+
+  const onHomePressed = React.useCallback(() => {
+    props.navigation.navigate('HomeScreen', {});
+  }, [props.navigation]);
 
   return (
     <View style={styles.baseView}>
-      <QuickTestButton
-        title={'Clone Myself'}
-        onPress={() => {
-          navigation.push('HomeDetails', {
-            generation: (route.params.generation ?? 0) + 1,
-          });
-        }}
-      />
-      <QuickTestButton
-        title={'Home'}
-        onPress={() => {
-          navigation.navigate('HomeScreen', {});
-        }}
-      />
+      <QuickTestButton title={'Clone Myself'} onPress={onCloneMyselfPressed} />
+      <QuickTestButton title={'Home'} onPress={onHomePressed} />
     </View>
   );
 };
