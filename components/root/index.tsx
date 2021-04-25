@@ -7,11 +7,11 @@ import {
   StackNavigationProp,
 } from '@react-navigation/stack';
 import {HomeScreen} from '../home-screen';
-import {HomeDetails} from '../home-details';
+import {HomeDetails, HomeDetailsParamList} from '../home-details';
 
 export type RootStackParamList = {
   HomeScreen: {};
-  HomeDetails: {};
+  HomeDetails: HomeDetailsParamList;
 };
 
 export type RootStackNavigationProp = StackNavigationProp<RootStackParamList>;

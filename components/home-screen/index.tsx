@@ -18,7 +18,7 @@ export const HomeScreen = (props: HomeScreenProps) => {
   }, [props.headerTitle, stackNavigation]);
 
   const onDetailsButtonPressed = React.useCallback(() => {
-    stackNavigation.push('HomeDetails', {});
+    stackNavigation.push('HomeDetails', {generation: 1});
   }, [stackNavigation]);
 
   return (
