@@ -25,7 +25,10 @@ export const RootView = () => {
     <SafeAreaView style={styles.safeArea}>
       <NavigationContainer>
         <RootStack.Navigator>
-          <RootStack.Screen name="HomeScreen" component={HomeScreen} />
+          <RootStack.Screen
+            name="HomeScreen"
+            children={() => [<HomeScreen key={0} headerTitle={'Home'} />]}
+          />
           <RootStack.Screen name="HomeDetails" component={HomeDetails} />
         </RootStack.Navigator>
       </NavigationContainer>
