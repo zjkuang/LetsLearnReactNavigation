@@ -36,7 +36,7 @@ export const HomeDetails = (props: HomeDetailsProps) => {
   }, [locked, navigation, props.route.params.generation]);
 
   React.useEffect(() => {
-    navigation.addListener('beforeRemove', e => {
+    let removeListener = navigation.addListener('beforeRemove', e => {
       if (!locked) {
         return;
       }
@@ -50,9 +50,7 @@ export const HomeDetails = (props: HomeDetailsProps) => {
       );
     });
 
-    return () => {
-      navigation.removeListener('beforeRemove', () => {});
-    };
+    return removeListener;
   }, [locked, navigation]);
 
   const onCloneMyselfPressed = React.useCallback(() => {
