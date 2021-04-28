@@ -1,10 +1,11 @@
 import React from 'react';
-import {View} from 'react-native';
+import {View, TouchableOpacity, Alert} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {StackScreenProps} from '@react-navigation/stack';
 import {styles} from './style';
 import {RootStackParamList} from '../root';
 import {QuickTestButton} from '../widgets';
+import {IconLock, IconUnlock} from '../icons';
 
 export type HomeDetailsParamList = {
   generation?: number;
@@ -12,6 +13,7 @@ export type HomeDetailsParamList = {
 type HomeDetailsProps = StackScreenProps<RootStackParamList, 'HomeDetails'>;
 export const HomeDetails = (props: HomeDetailsProps) => {
   const navigation = useNavigation();
+  const [locked, setLocked] = React.useState(false);
 
   React.useLayoutEffect(() => {
     let title = 'Details';
@@ -19,10 +21,39 @@ export const HomeDetails = (props: HomeDetailsProps) => {
     if (generation > 0) {
       title = `${title}[${generation}]`;
     }
-    props.navigation.setOptions({
+    navigation.setOptions({
       headerTitle: title,
+      headerRight: () => (
+        <TouchableOpacity
+          style={styles.navigationHeaderRight}
+          onPress={() => {
+            setLocked(!locked);
+          }}>
+          {locked ? <IconLock color={'red'} /> : <IconUnlock color={'green'} />}
+        </TouchableOpacity>
+      ),
     });
-  }, [props.navigation, props.route.params.generation]);
+  }, [locked, navigation, props.route.params.generation]);
+
+  React.useEffect(() => {
+    navigation.addListener('beforeRemove', e => {
+      if (!locked) {
+        return;
+      }
+
+      e.preventDefault();
+
+      Alert.alert(
+        'STOP!',
+        'Click on the lock icon to unlock it before leaving this screen.',
+        [{text: 'OK', style: 'cancel', onPress: () => {}}],
+      );
+    });
+
+    return () => {
+      navigation.removeListener('beforeRemove', () => {});
+    };
+  }, [locked, navigation]);
 
   const onCloneMyselfPressed = React.useCallback(() => {
     props.navigation.push('HomeDetails', {
