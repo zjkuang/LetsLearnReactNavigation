@@ -15,12 +15,12 @@ type MobileBetaScreenProps = StackScreenProps<
 export const MobileBetaScreen = (props: MobileBetaScreenProps) => {
   React.useLayoutEffect(() => {
     props.navigation.setOptions({
-      headerTitle: `Beta ${props.route.params.isRoot ? '\u2055' : ''}`,
+      headerTitle: `Beta${props.route.params.isRoot ? ' \u2055' : ''}`,
     });
   }, [props.navigation, props.route.params.isRoot]);
 
   const onAlphaButtonPressed = React.useCallback(() => {
-    props.navigation.push('MobileAlphaScreen', {});
+    props.navigation.push('MobileAlphaScreen', {isRoot: false});
   }, [props.navigation]);
 
   return (

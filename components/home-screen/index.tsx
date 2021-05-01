@@ -32,14 +32,14 @@ export const HomeScreen = (props: HomeScreenProps) => {
 
   const onMobileStackButtonPressed = React.useCallback(() => {
     // We can switch the initial screen when we navigate to MobileStackScreen
-    stackNavigation.navigate('MobileStackScreen', {initialScreen: 'alpha'});
+    stackNavigation.navigate('MobileStackScreen', {initialScreen: 'beta'});
   }, [stackNavigation]);
 
   return (
     <View style={styles.baseView}>
       <QuickTestButton title={'Details'} onPress={onDetailsButtonPressed} />
       <QuickTestButton
-        title={'Mobile Stack'}
+        title={'Nested Stack'}
         onPress={onMobileStackButtonPressed}
       />
     </View>
