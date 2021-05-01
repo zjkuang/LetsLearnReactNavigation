@@ -8,10 +8,12 @@ import {
 } from '@react-navigation/stack';
 import {HomeScreen} from '../home-screen';
 import {HomeDetails, HomeDetailsParamList} from '../home-details';
+import {MobileStackScreen, MobileStackScreenParamList} from '../mobile-stack';
 
 export type RootStackParamList = {
   HomeScreen: {};
   HomeDetails: HomeDetailsParamList;
+  MobileStackScreen: MobileStackScreenParamList;
 };
 
 export type RootStackNavigationProp = StackNavigationProp<RootStackParamList>;
@@ -30,6 +32,11 @@ export const RootView = () => {
             children={() => [<HomeScreen key={0} headerTitle={'Home'} />]}
           />
           <RootStack.Screen name="HomeDetails" component={HomeDetails} />
+          <RootStack.Screen
+            name="MobileStackScreen"
+            component={MobileStackScreen}
+            initialParams={{initialScreen: 'alpha'}}
+          />
         </RootStack.Navigator>
       </NavigationContainer>
     </SafeAreaView>
