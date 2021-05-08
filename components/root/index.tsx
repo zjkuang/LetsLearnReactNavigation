@@ -6,14 +6,10 @@ import {
   createStackNavigator,
   StackNavigationProp,
 } from '@react-navigation/stack';
-import {HomeScreen} from '../home-screen';
-import {HomeDetails, HomeDetailsParamList} from '../home-details';
-import {MobileStackScreen, MobileStackScreenParamList} from '../mobile-stack';
+import {MainTabView} from '../main';
 
 export type RootStackParamList = {
-  HomeScreen: {};
-  HomeDetails: HomeDetailsParamList;
-  MobileStackScreen: MobileStackScreenParamList;
+  MainTabScreen: {};
 };
 
 export type RootStackNavigationProp = StackNavigationProp<RootStackParamList>;
@@ -27,16 +23,7 @@ export const RootView = () => {
     <SafeAreaView style={styles.safeArea}>
       <NavigationContainer>
         <RootStack.Navigator>
-          <RootStack.Screen
-            name="HomeScreen"
-            children={() => [<HomeScreen key={0} headerTitle={'Home'} />]}
-          />
-          <RootStack.Screen name="HomeDetails" component={HomeDetails} />
-          <RootStack.Screen
-            name="MobileStackScreen"
-            component={MobileStackScreen}
-            initialParams={{initialScreen: 'alpha'}}
-          />
+          <RootStack.Screen name="MainTabScreen" component={MainTabView} />
         </RootStack.Navigator>
       </NavigationContainer>
     </SafeAreaView>

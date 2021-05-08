@@ -7,9 +7,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  navigationHeaderRight: {
-    right: 12,
-  },
 });
 
 export {styles};
