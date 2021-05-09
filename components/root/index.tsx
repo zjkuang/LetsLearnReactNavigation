@@ -7,9 +7,11 @@ import {
   StackNavigationProp,
 } from '@react-navigation/stack';
 import {MainTabView} from '../main';
+import {RootStackModalScreen, RootStackModalParamList} from '../modal-screen';
 
 export type RootStackParamList = {
   MainTabScreen: {};
+  RootStackModalScreen: RootStackModalParamList;
 };
 
 export type RootStackNavigationProp = StackNavigationProp<RootStackParamList>;
@@ -24,6 +26,10 @@ export const RootView = () => {
       <NavigationContainer>
         <RootStack.Navigator>
           <RootStack.Screen name="MainTabScreen" component={MainTabView} />
+          <RootStack.Screen
+            name="RootStackModalScreen"
+            component={RootStackModalScreen}
+          />
         </RootStack.Navigator>
       </NavigationContainer>
     </SafeAreaView>

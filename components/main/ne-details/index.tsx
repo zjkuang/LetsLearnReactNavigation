@@ -1,8 +1,11 @@
 import React from 'react';
 import {View, Text} from 'react-native';
-import {StackScreenProps} from '@react-navigation/stack';
 import {styles} from './style';
+import {StackScreenProps} from '@react-navigation/stack';
 import {NeStackParamList} from '../ne-screen';
+import {QuickTestButton} from '../../widgets';
+import {RootStackNavigationProp} from '../../root';
+import {useNavigation} from '@react-navigation/native';
 
 export type NeDetailsParamList = {
   headerTitle?: string;
@@ -13,6 +16,8 @@ export type NeDetailsParamList = {
 };
 type NeDetailsProps = StackScreenProps<NeStackParamList, 'NeDetails'>;
 export const NeDetails = (props: NeDetailsProps) => {
+  const rootNavigation = useNavigation<RootStackNavigationProp>();
+
   React.useLayoutEffect(() => {
     props.navigation.setOptions({
       headerTitle: `${props.route.params.headerTitle ?? 'Ne-Details'}`,
@@ -22,12 +27,28 @@ export const NeDetails = (props: NeDetailsProps) => {
     });
   }, [props.navigation, props.route.params.headerTitle]);
 
+  const onDidYouKnowClosed = React.useCallback((reason?: string) => {
+    console.log(`DidYouKnowClosed by ${reason}`);
+  }, []);
+
+  const onDidYouKnowPressed = React.useCallback(() => {
+    rootNavigation.navigate('RootStackModalScreen', {
+      headerTitle: 'Did you know',
+      content: 'ne-details-did-you-know',
+      onClose: onDidYouKnowClosed,
+    });
+  }, [onDidYouKnowClosed, rootNavigation]);
+
   return (
     <View style={styles.baseView}>
       <Text>{`number: ${props.route.params.number ?? ''}`}</Text>
       <Text>{`name: ${props.route.params.name ?? ''}`}</Text>
       <Text>{`abbreviation: ${props.route.params.abbreviation ?? ''}`}</Text>
       <Text>{`weight: ${props.route.params.weight ?? ''}`}</Text>
+      <QuickTestButton
+        title={'Did you know...'}
+        onPress={onDidYouKnowPressed}
+      />
     </View>
   );
 };
