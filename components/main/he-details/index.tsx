@@ -27,17 +27,12 @@ export const HeDetails = (props: HeDetailsProps) => {
     });
   }, [props.navigation, props.route.params.headerTitle]);
 
-  const onDidYouKnowClosed = React.useCallback((reason?: string) => {
-    console.log(`DidYouKnowClosed by ${reason}`);
-  }, []);
-
   const onDidYouKnowPressed = React.useCallback(() => {
     rootNavigation.navigate('RootStackModalScreen', {
       headerTitle: 'Did you know',
       content: 'he-details-did-you-know',
-      onClose: onDidYouKnowClosed,
     });
-  }, [onDidYouKnowClosed, rootNavigation]);
+  }, [rootNavigation]);
 
   return (
     <View style={styles.baseView}>

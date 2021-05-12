@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, LogBox} from 'react-native';
+import {View} from 'react-native';
 import {styles} from './style';
 import {StackScreenProps} from '@react-navigation/stack';
 import {RootStackParamList, RootStackNavigationProp} from '../root';
@@ -17,7 +17,6 @@ export type RootStackModalContent =
 export type RootStackModalParamList = {
   headerTitle?: string;
   content: RootStackModalContent;
-  onClose?: (reason?: string) => void;
 };
 type RootStackModalScreenProps = StackScreenProps<
   RootStackParamList,
@@ -25,13 +24,6 @@ type RootStackModalScreenProps = StackScreenProps<
 >;
 export const RootStackModalScreen = (props: RootStackModalScreenProps) => {
   const rootNavigation = useNavigation<RootStackNavigationProp>();
-
-  // https://stackoverflow.com/a/64078233
-  React.useEffect(() => {
-    LogBox.ignoreLogs([
-      'Non-serializable values were found in the navigation state',
-    ]);
-  }, []);
 
   React.useLayoutEffect(() => {
     props.navigation.setOptions({
@@ -43,15 +35,9 @@ export const RootStackModalScreen = (props: RootStackModalScreenProps) => {
     });
   }, [props.navigation, props.route.params.headerTitle]);
 
-  const onClose = React.useCallback(
-    (reason?: string) => {
-      rootNavigation.goBack();
-      if (props.route.params.onClose) {
-        props.route.params.onClose(reason);
-      }
-    },
-    [props.route.params, rootNavigation],
-  );
+  const onClose = React.useCallback(() => {
+    rootNavigation.goBack();
+  }, [rootNavigation]);
 
   return (
     <View style={styles.baseView}>
