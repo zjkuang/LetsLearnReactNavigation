@@ -57,10 +57,6 @@ export const SettingsRootView = () => {
     setShowInScreenOverlay(false);
   }, []);
 
-  const onShowFullScreenOverlayPressed = React.useCallback(() => {
-    //
-  }, []);
-
   return (
     <View style={styles.baseView}>
       <QuickTestButton
@@ -77,10 +73,6 @@ export const SettingsRootView = () => {
       <QuickTestButton
         title={'Show In-screen Overlay'}
         onPress={onShowInScreenOverlayPressed}
-      />
-      <QuickTestButton
-        title={'Show Full-screen Overlay'}
-        onPress={onShowFullScreenOverlayPressed}
       />
       {showInScreenOverlay && (
         <TranslucentOverlay onClose={onCloseInScreenOverlay} />
