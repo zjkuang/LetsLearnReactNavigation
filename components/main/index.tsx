@@ -8,7 +8,7 @@ import {NeNavigationView} from './ne-screen';
 import {ArNavigationView} from './ar-screen';
 import {KrNavigationView} from './kr-screen';
 import {SettingsNavigationView} from './settings-screen';
-import {RootStackParamList} from '../root';
+import {DrawerParamList} from '../drawer';
 import {StackScreenProps} from '@react-navigation/stack';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -21,7 +21,7 @@ type MainTabParamList = {
   Settings: {};
 };
 export type MainTabNavigationProp = BottomTabNavigationProp<MainTabParamList>;
-type MainTabProps = StackScreenProps<RootStackParamList, 'MainTabScreen'>;
+type MainTabProps = StackScreenProps<DrawerParamList, 'MainTabScreen'>;
 const BottomTab = createBottomTabNavigator<MainTabParamList>();
 export const MainTabView = (props: MainTabProps) => {
   React.useLayoutEffect(() => {
