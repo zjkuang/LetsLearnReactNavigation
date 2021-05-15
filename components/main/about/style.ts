@@ -7,8 +7,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  navigationHeaderLeft: {
-    left: 8,
+  cancelButton: {
+    position: 'absolute',
+    top: '0%',
+    right: '0%',
+    marginTop: 8,
+    marginRight: 8,
   },
 });
 

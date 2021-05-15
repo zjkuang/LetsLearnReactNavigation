@@ -3,12 +3,13 @@ import {
   createStackNavigator,
   StackNavigationProp,
 } from '@react-navigation/stack';
-import {View} from 'react-native';
+import {View, TouchableOpacity} from 'react-native';
 import {styles} from './style';
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, DrawerActions} from '@react-navigation/native';
 import {QuickTestButton} from '../../widgets';
 import {HeDetails, HeDetailsParamList} from '../he-details';
 import {MainTabNavigationProp} from '../index';
+import {IconTableOfContents} from '../../../components/icons';
 
 export type HeStackParamList = {
   HeScreen: {}; // navigation root
@@ -30,14 +31,27 @@ export const HeRootView = () => {
   const stackNavigation = useNavigation<HeStackNavitationProp>();
   const mainTabNavigation = useNavigation<MainTabNavigationProp>();
 
+  const onOpenDrawer = React.useCallback(() => {
+    stackNavigation.dispatch(DrawerActions.toggleDrawer());
+  }, [stackNavigation]);
+
   React.useLayoutEffect(() => {
     stackNavigation.setOptions({
+      headerLeft: () => (
+        <TouchableOpacity
+          style={styles.navigationHeaderLeft}
+          onPress={() => {
+            onOpenDrawer();
+          }}>
+          <IconTableOfContents />
+        </TouchableOpacity>
+      ),
       headerTitle: 'He',
       headerTitleStyle: {
         alignSelf: 'center',
       },
     });
-  }, [stackNavigation]);
+  }, [onOpenDrawer, stackNavigation]);
 
   const onDetailsPressed = React.useCallback(() => {
     stackNavigation.push('HeDetails', {
