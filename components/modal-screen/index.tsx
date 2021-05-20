@@ -1,7 +1,7 @@
 import React from 'react';
 import {View} from 'react-native';
 import {styles} from './style';
-import {StackScreenProps} from '@react-navigation/stack';
+import {StackScreenProps, TransitionPresets} from '@react-navigation/stack';
 import {RootStackParamList, RootStackNavigationProp} from '../root';
 import {AboutModalView} from '../main/about';
 import {HeDetailsModalView} from '../main/he-details/he-details-modal-view';
@@ -34,6 +34,8 @@ export const RootStackModalScreen = (props: RootStackModalScreenProps) => {
       headerTitleStyle: {
         alignSelf: 'center',
       },
+      cardOverlayEnabled: false, // set it true to show card overlay
+      ...TransitionPresets.ModalTransition, // ModalTransition, ModalPresentationIOS, ModalSlideFromBottomIOS
     });
   }, [props.navigation, props.route.params?.headerTitle]);
 
