@@ -1,7 +1,7 @@
 import React from 'react';
 import {View} from 'react-native';
 import {styles} from './style';
-import {StackScreenProps} from '@react-navigation/stack';
+import {StackScreenProps, TransitionPresets} from '@react-navigation/stack';
 import {RootStackParamList, RootStackNavigationProp} from '../root';
 import {HeDetailsModalView} from '../main/he-details/he-details-modal-view';
 import {NeDetailsModalView} from '../main/ne-details/ne-details-modal-view';
@@ -28,10 +28,8 @@ export const RootStackModalScreen = (props: RootStackModalScreenProps) => {
   React.useLayoutEffect(() => {
     props.navigation.setOptions({
       headerShown: false,
-      headerTitle: `${props.route.params.headerTitle ?? 'Modal'}`,
-      headerTitleStyle: {
-        alignSelf: 'center',
-      },
+      cardOverlayEnabled: true,
+      ...TransitionPresets.ModalPresentationIOS, // ModalTransition, ModalPresentationIOS, ModalSlideFromBottomIOS
     });
   }, [props.navigation, props.route.params.headerTitle]);
 
