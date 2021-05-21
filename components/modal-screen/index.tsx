@@ -30,10 +30,6 @@ export const RootStackModalScreen = (props: RootStackModalScreenProps) => {
   React.useLayoutEffect(() => {
     props.navigation.setOptions({
       headerShown: false,
-      headerTitle: `${props.route.params?.headerTitle ?? 'Modal'}`,
-      headerTitleStyle: {
-        alignSelf: 'center',
-      },
       cardOverlayEnabled: false, // set it true to show card overlay
       ...TransitionPresets.ModalTransition, // ModalTransition, ModalPresentationIOS, ModalSlideFromBottomIOS
     });
