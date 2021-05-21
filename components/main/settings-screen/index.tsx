@@ -20,7 +20,8 @@ export type SettingsStackParamList = {
   TopTabScreen: TopTabScreenParamList;
   // more navigation children can be added here
 };
-export type SettingsStackNavitationProp = StackNavigationProp<SettingsStackParamList>;
+export type SettingsStackNavitationProp =
+  StackNavigationProp<SettingsStackParamList>;
 const SettingsStack = createStackNavigator<SettingsStackParamList>();
 export const SettingsNavigationView = () => {
   return (
