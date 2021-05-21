@@ -29,9 +29,9 @@ export const RootStackModalScreen = (props: RootStackModalScreenProps) => {
     props.navigation.setOptions({
       headerShown: false,
       cardOverlayEnabled: true,
-      ...TransitionPresets.ModalPresentationIOS, // ModalTransition, ModalPresentationIOS, ModalSlideFromBottomIOS
+      ...TransitionPresets.ModalTransition, // ModalTransition, ModalPresentationIOS, ModalSlideFromBottomIOS
     });
-  }, [props.navigation, props.route.params.headerTitle]);
+  }, [props.navigation, props.route.params?.headerTitle]);
 
   const onClose = React.useCallback(() => {
     rootNavigation.goBack();
@@ -39,16 +39,16 @@ export const RootStackModalScreen = (props: RootStackModalScreenProps) => {
 
   return (
     <View style={styles.baseView}>
-      {props.route.params.content === 'he-details-did-you-know' && (
+      {props.route.params?.content === 'he-details-did-you-know' && (
         <HeDetailsModalView onClose={onClose} />
       )}
-      {props.route.params.content === 'ne-details-did-you-know' && (
+      {props.route.params?.content === 'ne-details-did-you-know' && (
         <NeDetailsModalView onClose={onClose} />
       )}
-      {props.route.params.content === 'ar-details-did-you-know' && (
+      {props.route.params?.content === 'ar-details-did-you-know' && (
         <ArDetailsModalView onClose={onClose} />
       )}
-      {props.route.params.content === 'kr-details-did-you-know' && (
+      {props.route.params?.content === 'kr-details-did-you-know' && (
         <KrDetailsModalView onClose={onClose} />
       )}
     </View>
