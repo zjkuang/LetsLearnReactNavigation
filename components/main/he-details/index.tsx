@@ -8,7 +8,7 @@ import {RootStackNavigationProp} from '../../root';
 import {useNavigation} from '@react-navigation/native';
 
 export type HeDetailsParamList = {
-  headerTitle?: string;
+  headerTitle: string;
   number?: number;
   name?: string;
   abbreviation?: string;
