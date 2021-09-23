@@ -37,7 +37,7 @@ const FlatListItemSeparator = () => {
 };
 
 const DrawerContent = (props: DrawerContentComponentProps) => {
-  // const drawerNavigation = props.navigation; // To get draw's own navigation
+  // const drawerNavigation = props.navigation; // To get drawer's own navigation
   const rootNavigation = useNavigation<RootStackNavigationProp>();
   return (
     <View style={styles.baseView}>
