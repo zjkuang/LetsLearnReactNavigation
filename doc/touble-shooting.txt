@@ -1,2 +1,9 @@
 (1) WARN  RCTBridge required dispatch_sync to load RCTDevLoadingView. This may lead to deadlocks
 Delete the app and reinstall it may fix.
+
+(2) iOS build failure after upgrading to Xcode 13, "Could not find or use auto-linked library "
+https://stackoverflow.com/a/54586937
+Open ios/YourAppName.xcodeproj in Xcode
+Right-click on Your App Name in the Project Navigator on the left, and click New File…
+Create a single empty Swift file to the project (make sure that Your App Name target is selected when adding)
+when Xcode asks, press Create Bridging Header and do not remove Swift file then. re-run your build.
