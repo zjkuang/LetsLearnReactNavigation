@@ -2,7 +2,8 @@
 Startup
 
 (1) Create your app with TypeScript template
-Run `npx react-native init <your-app-name> --template react-native-template-typescript`
+Run `npx --ignore-existing react-native init <AppName> --template react-native-template-typescript`
+// Note that "--ignore-existing" is important
 
 In most cases it will create the app for you. But when I ran it, I got an error saying
   Error: Failed to install CocoaPods dependencies for iOS project, which is required by this template.
